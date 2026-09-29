@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BURGER KING® | Огонь с 1954 года</title>
+  
+  <!-- Шрифты Google (Rubik + Titan One) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,600;0,800;0,900;1,700&family=Titan+One&display=swap" rel="stylesheet">
+  
+  <!-- Иконки FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==================== ПЕРЕМЕННЫЕ И СТИЛИ ==================== */
+    :root {
+      --flame-red: #D62300;
+      --deep-red: #A31200;
+      --grill-mustard: #FF9E1B;
+      --charcoal: #120A07;
+      --charcoal-light: #1F140E;
+      --charcoal-card: #281912;
+      --bun-cream: #FBEBD2;
+      --white: #FFFFFF;
+      --text-muted: #BFAEA4;
+      --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--charcoal);
+      color: var(--bun-cream);
+      font-family: 'Rubik', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Стилизация скроллбара */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--charcoal);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--flame-red);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--grill-mustard);
+    }
+
+    /* Типографика */
+    h1, h2, h3, .brand-font {
+      font-family: 'Titan One', cursive, sans-serif;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(214, 35, 0, 0.2);
+      border: 1px solid var(--flame-red);
+      color: var(--grill-mustard);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      letter-spacing: 1.5px;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: var(--bun-cream);
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+    .section-title span {
+      color: var(--flame-red);
+      text-shadow: 0 0 25px rgba(214, 35, 0, 0.6);
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* Кнопки */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 50px;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--flame-red) 0%, var(--deep-red) 100%);
+      color: var(--white);
+      box-shadow: 0 10px 25px rgba(214, 35, 0, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(214, 35, 0, 0.6);
+      color: var(--bun-cream);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--grill-mustard);
+      color: var(--grill-mustard);
+    }
+
+    .btn-outline:hover {
+      background: var(--grill-mustard);
+      color: var(--charcoal);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255, 158, 27, 0.3);
+    }
+
+    /* ==================== HEADER ==================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      background: rgba(18, 10, 7, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 12px 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(255, 158, 27, 0.15);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--flame-red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--bun-cream);
+      box-shadow: 0 0 15px rgba(214, 35, 0, 0.5);
+      transform: rotate(-8deg);
+      transition: var(--transition);
+    }
+
+    .logo-container:hover .logo-icon {
+      transform: rotate(0deg) scale(1.1);
+    }
+
+    .logo-text {
+      font-size: 1.4rem;
+      color: var(--bun-cream);
+      font-family: 'Titan One', cursive;
+      line-height: 1;
+    }
+
+    .logo-text span {
+      color: var(--grill-mustard);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--bun-cream);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--flame-red);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--grill-mustard);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cart-btn {
+      position: relative;
+      background: var(--charcoal-light);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bun-cream);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .cart-btn:hover {
+      background: var(--flame-red);
+      transform: scale(1.05);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--grill-mustard);
+      color: var(--charcoal);
+      font-size: 0.75rem;
+      font-weight: 900;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--bun-cream);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* ==================== HERO SECTION ==================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 100px;
+      overflow: hidden;
+      background: radial-gradient(circle at 60% 50%, #2e140a 0%, var(--charcoal) 70%);
+    }
+
+    #fire-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 158, 27, 0.15);
+      border-left: 4px solid var(--grill-mustard);
+      padding: 8px 18px;
+      border-radius: 0 30px 30px 0;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--grill-mustard);
+      margin-bottom: 25px;
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 5px rgba(255, 158, 27, 0.2); }
+      to { box-shadow: 0 0 20px rgba(255, 158, 27, 0.5); }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 0.95;
+      margin-bottom: 25px;
+      color: var(--bun-cream);
+    }
+
+    .hero-title .glow-text {
+      color: var(--flame-red);
+      text-shadow: 0 0 30px rgba(214, 35, 0, 0.8), 0 0 60px rgba(255, 158, 27, 0.3);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-burger-img {
+      width: 110%;
+      max-width: 580px;
+      height: auto;
+      filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 45px rgba(214, 35, 0, 0.35));
+      animation: floatBurger 5s ease-in-out infinite;
+      cursor: grab;
+      transition: transform 0.2s ease-out;
+    }
+
+    @keyframes floatBurger {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-16px) rotate(1.5deg); }
+    }
+
+    .hero-badge-1954 {
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      background: var(--grill-mustard);
+      color: var(--charcoal);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Titan One', cursive;
+      font-size: 0.85rem;
+      transform: rotate(12deg);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      animation: badgeRotate 10s linear infinite;
+    }
+
+    @keyframes badgeRotate {
+      0% { transform: rotate(12deg); }
+      50% { transform: rotate(20deg) scale(1.05); }
+      100% { transform: rotate(12deg); }
+    }
+
+    .hero-badge-1954 strong {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    /* ==================== FEATURES / ADVANTAGES ==================== */
+    .features {
+      padding: 100px 0;
+      position: relative;
+      background: linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-light) 50%, var(--charcoal) 100%);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: rgba(40, 25, 18, 0.6);
+      border: 1px solid rgba(255, 158, 27, 0.12);
+      border-radius: 24px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--flame-red), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 158, 27, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(214, 35, 0, 0.2);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon-box {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 25px;
+      background: rgba(214, 35, 0, 0.15);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--grill-mustard);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover .feature-icon-box {
+      background: var(--flame-red);
+      color: var(--white);
+      transform: scale(1.1) rotate(6deg);
+    }
+
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--bun-cream);
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ==================== MENU SECTION ==================== */
+    .menu-section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 28px;
+      background: var(--charcoal-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--bun-cream);
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--flame-red);
+      border-color: var(--flame-red);
+      color: var(--white);
+      box-shadow: 0 8px 20px rgba(214, 35, 0, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
+    }
+
+    .menu-card {
+      background: var(--charcoal-card);
+      border-radius: 28px;
+      border: 1px solid rgba(255, 158, 27, 0.15);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 158, 27, 0.15);
+      border-color: var(--grill-mustard);
+    }
+
+    .card-badge-flame {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(214, 35, 0, 0.85);
+      backdrop-filter: blur(5px);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 2;
+    }
+
+    .menu-img-wrap {
+      width: 100%;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .menu-img {
+      max-width: 90%;
+      max-height: 190px;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
+      transition: transform 0.4s ease;
+    }
+
+    .menu-card:hover .menu-img {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .menu-card-body {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .menu-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .menu-title {
+      font-size: 1.5rem;
+      color: var(--bun-cream);
+    }
+
+    .menu-price {
+      font-family: 'Titan One', cursive;
+      font-size: 1.4rem;
+      color: var(--grill-mustard);
+    }
+
+    .menu-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .menu-ingredients-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 12px;
+      color: var(--bun-cream);
+    }
+
+    .menu-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 18px;
+    }
+
+    .calorie-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .order-item-btn {
+      background: var(--flame-red);
+      color: var(--white);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .order-item-btn:hover {
+      background: var(--grill-mustard);
+      color: var(--charcoal);
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    /* ==================== INTERACTIVE BURGER BUILDER ==================== */
+    .builder-section {
+      padding: 100px 0;
+      background: radial-gradient(circle at center, #23140c 0%, var(--charcoal) 100%);
+      border-top: 1px solid rgba(255, 158, 27, 0.1);
+      border-bottom: 1px solid rgba(255, 158, 27, 0.1);
+    }
+
+    .builder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .builder-visual {
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px dashed rgba(255, 158, 27, 0.3);
+      border-radius: 30px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 460px;
+      position: relative;
+    }
+
+    .burger-layer-stack {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 320px;
+      transition: var(--transition);
+    }
+
+    .burger-layer {
+      width: 100%;
+      height: 38px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--white);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      animation: dropIngredient 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: var(--transition);
+    }
+
+    @keyframes dropIngredient {
+      from {
+        transform: translateY(-60px) scale(0.6);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .layer-bun-top { background: #D98838; border-radius: 40px 40px 10px 10px; height: 50px; }
+    .layer-bun-bottom { background: #BF7226; border-radius: 10px 10px 30px 30px; height: 45px; }
+    .layer-patty { background: #401B13; border: 2px dashed #FF5E00; height: 42px; }
+    .layer-cheese { background: #FFAE00; height: 22px; color: #523100; }
+    .layer-bacon { background: #7C2A1E; height: 26px; }
+    .layer-tomato { background: #E03522; height: 28px; }
+    .layer-lettuce { background: #4FB338; height: 28px; }
+    .layer-onion { background: #D5B4D6; height: 24px; color: #3C1C42; }
+
+    .builder-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .ingredients-picker {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .ingredient-btn {
+      padding: 14px 18px;
+      background: var(--charcoal-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      color: var(--bun-cream);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .ingredient-btn:hover {
+      border-color: var(--grill-mustard);
+      background: rgba(255, 158, 27, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .builder-summary {
+      background: var(--charcoal-card);
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 158, 27, 0.2);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .summary-stats h4 {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .summary-stats .total-price {
+      font-size: 2.2rem;
+      font-family: 'Titan One', cursive;
+      color: var(--grill-mustard);
+    }
+
+    /* ==================== HISTORY SECTION ==================== */
+    .history-section {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 60px auto 0;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: linear-gradient(180deg, var(--flame-red), var(--grill-mustard), transparent);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      padding: 15px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: var(--flame-red);
+      border: 4px solid var(--charcoal);
+      top: 25px;
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow: 0 0 10px var(--flame-red);
+    }
+
+    .timeline-item.left .timeline-dot {
+      right: -11px;
+    }
+
+    .timeline-item.right .timeline-dot {
+      left: -11px;
+    }
+
+    .timeline-content {
+      padding: 26px;
+      background: var(--charcoal-card);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 158, 27, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: var(--transition);
+    }
+
+    .timeline-content:hover {
+      border-color: var(--grill-mustard);
+      transform: scale(1.03);
+    }
+
+    .timeline-year {
+      font-size: 1.8rem;
+      font-family: 'Titan One', cursive;
+      color: var(--grill-mustard);
+      margin-bottom: 5px;
+    }
+
+    .timeline-title {
+      font-size: 1.25rem;
+      color: var(--bun-cream);
+      margin-bottom: 10px;
+    }
+
+    .timeline-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* ==================== BANNER / CALL TO ACTION ==================== */
+    .cta-banner {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--flame-red) 0%, #800c00 100%);
+      border-radius: 36px;
+      margin: 60px auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(214, 35, 0, 0.35);
+    }
+
+    .cta-banner::before {
+      content: 'WHOPPER';
+      position: absolute;
+      font-family: 'Titan One', cursive;
+      font-size: 14vw;
+      color: rgba(255, 255, 255, 0.05);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 20px;
+      color: var(--bun-cream);
+    }
+
+    .cta-banner p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 35px;
+    }
+
+    .cta-banner .btn {
+      background: var(--bun-cream);
+      color: var(--flame-red);
+      font-size: 1.2rem;
+    }
+
+    .cta-banner .btn:hover {
+      background: var(--white);
+      color: var(--charcoal);
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      background: #0B0604;
+      padding: 70px 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      margin-top: 20px;
+      font-size: 0.95rem;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.1rem;
+      margin-bottom: 22px;
+      color: var(--bun-cream);
+      position: relative;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--grill-mustard);
+      padding-left: 6px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      background: var(--charcoal-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bun-cream);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      background: var(--flame-red);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(214, 35, 0, 0.4);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    /* ==================== TOAST NOTIFICATION ==================== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--charcoal-card);
+      border-left: 5px solid var(--grill-mustard);
+      padding: 16px 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      z-index: 2000;
+      transform: translateX(150%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .toast.show {
+      transform: translateX(0);
+    }
+
+    .toast-icon {
+      font-size: 1.4rem;
+      color: var(--grill-mustard);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+      }
+      .hero-tag {
+        margin: 0 auto 20px;
+      }
+      .hero-desc {
+        margin: 0 auto 30px;
+      }
+      .hero-cta {
+        justify-content: center;
+      }
+      .builder-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .timeline::after {
+        left: 31px;
+      }
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 20px;
+        text-align: left;
+      }
+      .timeline-item.right {
+        left: 0;
+      }
+      .timeline-item.left .timeline-dot,
+      .timeline-item.right .timeline-dot {
+        left: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--charcoal);
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.4s ease;
+        padding: 40px 0;
+      }
+      nav ul.active {
+        left: 0;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .ingredients-picker {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header id="main-header">
+    <div class="container nav-container">
+      <a href="#" class="logo-container">
+        <div class="logo-icon">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+        <div class="logo-text">BURGER<br><span>KING</span></div>
+      </a>
+
+      <nav>
+        <ul id="nav-links">
+          <li><a href="#hero">Главная</a></li>
+          <li><a href="#menu">Меню</a></li>
+          <li><a href="#builder">Конструктор</a></li>
+          <li><a href="#features">Огонь BK</a></li>
+          <li><a href="#history">История</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" id="cartBtn" title="Корзина">
+          <i class="fa-solid fa-fire-burner"></i>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <button class="mobile-menu-btn" id="burgerToggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero" id="hero">
+    <canvas id="fire-canvas"></canvas>
+
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fa-solid fa-fire"></i> Вкус настоящего огня с 1954 года
+        </div>
+        <h1 class="hero-title">
+          ПРАВЬ СВОИМ <br>
+          <span class="glow-text">ВКУСОМ</span>
+        </h1>
+        <p class="hero-desc">
+          Легендарный Воппер, обжаренный на 100% открытом огне. Натуральная говядина, свежие хрустящие овощи и никакой спешки — только чистый культовый вкус.
+        </p>
+        <div class="hero-cta">
+          <a href="#menu" class="btn btn-primary">
+            <i class="fa-solid fa-burger"></i> Выбрать Бургер
+          </a>
+          <a href="#history" class="btn btn-outline">
+            <i class="fa-solid fa-crown"></i> Наша История
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap">
+        <div class="hero-badge-1954">
+          <span>SINCE</span>
+          <strong>1954</strong>
+          <span>FLAME</span>
+        </div>
+        <!-- Качественный рендер бургера -->
+        <img 
+          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80" 
+          alt="Культовый Воппер" 
+          class="hero-burger-img"
+          id="heroBurger"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES SECTION ==================== -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge">В чем секрет вкуса?</span>
+        <h2 class="section-title">ПОЧЕМУ МЫ <span>ЛУЧШЕ</span></h2>
+        <p class="section-desc">Особая технология приготовления на открытом огне делает каждый бургер сочным и неповторимым.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+          </div>
+          <h3>100% Открытый Огонь</h3>
+          <p>Мы не жарим котлеты на масляной сковороде. Мясо готовится на уникальных грилях с настоящим пламенем, сохраняя сок и аромат дымка.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-cow"></i>
+          </div>
+          <h3>100% Чистая Говядина</h3>
+          <p>Только отборное рубленое мясо без сои, красителей, консервантов и усилителей вкуса. Только мясо, щепотка соли и перец.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3>Свежая Нарезка</h3>
+          <p>Спелые томаты, листовой салат и хрустящий лучок нарезаются прямо в ресторане каждое утро для сохранения максимальной свежести.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <h3>Сделай по-своему!</h3>
+          <p>Легендарный принцип «Have It Your Way»: добавьте двойной бекон, уберите лук или добавьте халапеньо — решаете только вы!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== POPULAR MENU ==================== -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge">Королевский выбор</span>
+        <h2 class="section-title">ЗВЕЗДЫ <span>МЕНЮ</span></h2>
+        <p class="section-desc">Самые знаменитые и востребованные позиции, покорившие миллионы сердец по всей планете.</p>
+      </div>
+
+      <div class="menu-tabs">
+        <button class="tab-btn active" data-category="all">Все позиции</button>
+        <button class="tab-btn" data-category="burgers">Легендарные Бургеры</button>
+        <button class="tab-btn" data-category="chicken">Курица</button>
+        <button class="tab-btn" data-category="snacks">Закуски</button>
+      </div>
+
+      <div class="menu-grid" id="menuContainer">
+        <!-- Карточка 1: Воппер -->
+        <div class="menu-card" data-cat="burgers">
+          <div class="card-badge-flame">
+            <i class="fa-solid fa-fire"></i> ХИТ №1
+          </div>
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80" alt="Воппер" class="menu-img">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-title-row">
+              <h3 class="menu-title">ВОППЕР®</h3>
+              <span class="menu-price">299 ₽</span>
+            </div>
+            <p class="menu-desc">Царь всех бургеров. Приготовленная на огне 100% говядина, свежие томаты, маринованные огурчики и майонез на кунжутной булочке.</p>
+            <div class="menu-ingredients-tags">
+              <span class="tag">Огонь</span>
+              <span class="tag">Говядина</span>
+              <span class="tag">Кунжут</span>
+            </div>
+            <div class="menu-card-footer">
+              <div class="calorie-info">
+                <i class="fa-solid fa-bolt"></i> 640 ккал
+              </div>
+              <button class="order-item-btn add-to-cart-btn" data-name="Воппер®" title="Добавить в заказ">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 2: Стейкхаус -->
+        <div class="menu-card" data-cat="burgers">
+          <div class="card-badge-flame">
+            <i class="fa-solid fa-fire"></i> ПРЕМИУМ
+          </div>
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=600&q=80" alt="Стейкхаус" class="menu-img">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-title-row">
+              <h3 class="menu-title">СТЕЙКХАУС</h3>
+              <span class="menu-price">389 ₽</span>
+            </div>
+            <p class="menu-desc">Сочная котлета на гриле, ломтики хрустящего бекона, сыр, жареный лук фри и насыщенный дымный соус Барбекю.</p>
+            <div class="menu-ingredients-tags">
+              <span class="tag">Бекон</span>
+              <span class="tag">Лук фри</span>
+              <span class="tag">Соус BBQ</span>
+            </div>
+            <div class="menu-card-footer">
+              <div class="calorie-info">
+                <i class="fa-solid fa-bolt"></i> 810 ккал
+              </div>
+              <button class="order-item-btn add-to-cart-btn" data-name="Стейкхаус" title="Добавить в заказ">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 3: Двойной Чизбургер -->
+        <div class="menu-card" data-cat="burgers">
+          <div class="card-badge-flame">
+            <i class="fa-solid fa-crown"></i> КЛАССИКА
+          </div>
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=600&q=80" alt="Двойной Чизбургер" class="menu-img">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-title-row">
+              <h3 class="menu-title">ДВОЙНОЙ ЧИЗ</h3>
+              <span class="menu-price">219 ₽</span>
+            </div>
+            <p class="menu-desc">Два сочных бифштекса на гриле, двойной американский сыр Чеддер, горчица, кетчуп и пикантные огурчики.</p>
+            <div class="menu-ingredients-tags">
+              <span class="tag">2х Говядина</span>
+              <span class="tag">Чеддер</span>
+              <span class="tag">Пикули</span>
+            </div>
+            <div class="menu-card-footer">
+              <div class="calorie-info">
+                <i class="fa-solid fa-bolt"></i> 490 ккал
+              </div>
+              <button class="order-item-btn add-to-cart-btn" data-name="Двойной Чиз" title="Добавить в заказ">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 4: Чикен Роял -->
+        <div class="menu-card" data-cat="chicken">
+          <div class="card-badge-flame">
+            <i class="fa-solid fa-star"></i> НЕЖНОСТЬ
+          </div>
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80" alt="Чикен Роял" class="menu-img">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-title-row">
+              <h3 class="menu-title">ЧИКЕН РОЯЛ</h3>
+              <span class="menu-price">279 ₽</span>
+            </div>
+            <p class="menu-desc">Отборное белое куриное филе в хрустящей панировке, нежный соус, свежий салат Айсберг на длинной сдобной булочке с кунжутом.</p>
+            <div class="menu-ingredients-tags">
+              <span class="tag">100% Филе</span>
+              <span class="tag">Айсберг</span>
+              <span class="tag">Сливочный соус</span>
+            </div>
+            <div class="menu-card-footer">
+              <div class="calorie-info">
+                <i class="fa-solid fa-bolt"></i> 560 ккал
+              </div>
+              <button class="order-item-btn add-to-cart-btn" data-name="Чикен Роял" title="Добавить в заказ">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 5: Кинг Фри & Луковые кольца -->
+        <div class="menu-card" data-cat="snacks">
+          <div class="card-badge-flame">
+            <i class="fa-solid fa-thumbs-up"></i> ТОП СНЭК
+          </div>
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80" alt="Кинг Фри" class="menu-img">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-title-row">
+              <h3 class="menu-title">КИНГ ФРИ XL</h3>
+              <span class="menu-price">149 ₽</span>
+            </div>
+            <p class="menu-desc">Настоящий хрустящий снаружи и нежный внутри картофель фри особой нарезки с золотистой корочкой.</p>
+            <div class="menu-ingredients-tags">
+              <span class="tag">Хруст</span>
+              <span class="tag">Картофель</span>
+              <span class="tag">Морская соль</span>
+            </div>
+            <div class="menu-card-footer">
+              <div class="calorie-info">
+                <i class="fa-solid fa-bolt"></i> 380 ккал
+              </div>
+              <button class="order-item-btn add-to-cart-btn" data-name="Кинг Фри XL" title="Добавить в заказ">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 6: Луковые кольца -->
+        <div class="menu-card" data-cat="snacks">
+          <div class="card-badge-flame">
+            <i class="fa-solid fa-circle"></i> ЭКСКЛЮЗИВ
+          </div>
+          <div class="menu-img-wrap">
+            <img src="https://images.unsplash.com/photo-1639024471287-032f6983cfb4?auto=format&fit=crop&w=600&q=80" alt="Луковые кольца" class="menu-img">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-title-row">
+              <h3 class="menu-title">ЛУКОВЫЕ КОЛЬЦА</h3>
+              <span class="menu-price">169 ₽</span>
+            </div>
+            <p class="menu-desc">Фирменная закуска Burger King: сладкий сочный лук в золотистой хрустящей панировке. Идеально под барбекю соус.</p>
+            <div class="menu-ingredients-tags">
+              <span class="tag">Золотая панировка</span>
+              <span class="tag">Хит</span>
+            </div>
+            <div class="menu-card-footer">
+              <div class="calorie-info">
+                <i class="fa-solid fa-bolt"></i> 320 ккал
+              </div>
+              <button class="order-item-btn add-to-cart-btn" data-name="Луковые кольца" title="Добавить в заказ">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BURGER BUILDER WIDGET ==================== -->
+  <section class="builder-section" id="builder">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge">Твой вкус — твои правила</span>
+        <h2 class="section-title">СОБЕРИ СВОЙ <span>ШЕДЕВР</span></h2>
+        <p class="section-desc">Добавляй любимые ингредиенты кликом и смотри, как растет твой идеальный бургер на гриле!</p>
+      </div>
+
+      <div class="builder-grid">
+        <div class="builder-visual">
+          <div class="burger-layer-stack" id="burgerStack">
+            <div class="burger-layer layer-bun-top">Булочка с кунжутом</div>
+            <div class="burger-layer layer-tomato">Спелые томаты</div>
+            <div class="burger-layer layer-cheese">Сыр Чеддер</div>
+            <div class="burger-layer layer-patty">100% Говядина на огне</div>
+            <div class="burger-layer layer-bun-bottom">Нижняя булочка</div>
+          </div>
+        </div>
+
+        <div class="builder-controls">
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Добавить в бургер:</h3>
+          <div class="ingredients-picker">
+            <button class="ingredient-btn" data-type="patty" data-name="Котлета на огне" data-price="120" data-cal="240">
+              <span>+ Котлета Гриль</span> <strong>+120 ₽</strong>
+            </button>
+            <button class="ingredient-btn" data-type="cheese" data-name="Сыр Чеддер" data-price="45" data-cal="85">
+              <span>+ Сыр Чеддер</span> <strong>+45 ₽</strong>
+            </button>
+            <button class="ingredient-btn" data-type="bacon" data-name="Хрустящий бекон" data-price="65" data-cal="110">
+              <span>+ Хрустящий Бекон</span> <strong>+65 ₽</strong>
+            </button>
+            <button class="ingredient-btn" data-type="tomato" data-name="Томаты" data-price="35" data-cal="20">
+              <span>+ Свежие Томаты</span> <strong>+35 ₽</strong>
+            </button>
+            <button class="ingredient-btn" data-type="lettuce" data-name="Салат Айсберг" data-price="30" data-cal="10">
+              <span>+ Листовой Салат</span> <strong>+30 ₽</strong>
+            </button>
+            <button class="ingredient-btn" data-type="onion" data-name="Лук фри" data-price="40" data-cal="45">
+              <span>+ Лук Фри</span> <strong>+40 ₽</strong>
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button class="btn btn-outline" id="resetBurgerBtn" style="padding: 10px 20px; font-size: 0.9rem;">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Сбросить
+            </button>
+          </div>
+
+          <div class="builder-summary">
+            <div class="summary-stats">
+              <h4>Итоговый бургер:</h4>
+              <div class="total-price" id="builderPrice">299 ₽</div>
+              <span id="builderCalories" style="color: var(--text-muted); font-size: 0.9rem;">640 ккал</span>
+            </div>
+            <button class="btn btn-primary" id="orderCustomBurger">
+              <i class="fa-solid fa-bag-shopping"></i> В корзину
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HISTORY SECTION ==================== -->
+  <section class="history-section" id="history">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge">Путь легенды</span>
+        <h2 class="section-title">ИСТОРИЯ <span>КОРОЛЯ</span></h2>
+        <p class="section-desc">Как маленькая закусочная в Майами перевернула культуру фастфуда и зажгла огонь по всему миру.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- 1954 -->
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1954</div>
+            <h3 class="timeline-title">Основание в Майами</h3>
+            <p class="timeline-desc">
+              Предприниматели Джеймс Макламор и Дэвид Эджертон открывают первый ресторан под названием <strong>Insta-Burger King</strong> во Флориде. С самого первого дня краеугольным камнем стало приготовление мяса на огне.
+            </p>
+          </div>
+        </div>
+
+        <!-- 1957 -->
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1957</div>
+            <h3 class="timeline-title">Рождение Воппера (Whopper)</h3>
+            <p class="timeline-desc">
+              Макламор заметил, что клиенты обожают сытные, большие порции. Так появился знаменитый <strong>Whopper®</strong> (в переводе «Громадина»), который стоил всего 37 центов и стал символом Burger King на десятилетия.
+            </p>
+          </div>
+        </div>
+
+        <!-- 1974 -->
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">1974</div>
+            <h3 class="timeline-title">Сделай по-своему! (Have It Your Way)</h3>
+            <p class="timeline-desc">
+              Историческая кампания, изменившая индустрию. В то время как конкуренты запрещали менять рецептуру, Burger King разрешил каждому гостю собирать бургер так, как нравится лично ему.
+            </p>
+          </div>
+        </div>
+
+        <!-- Сегодня -->
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">СЕГОДНЯ</div>
+            <h3 class="timeline-title">Мировая империя вкуса</h3>
+            <p class="timeline-desc">
+              Более 19 000 ресторанов в более чем 100 странах мира. Миллионы гостей каждый день выбирают подлинный вкус обжарки на огне, сочные рецепты и безупречное качество ингредиентов.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BANNER CTA -->
+      <div class="cta-banner">
+        <div class="cta-content">
+          <h2>ПОЧУВСТВУЙ ОГОНЬ ПРЯМО СЕЙЧАС</h2>
+          <p>Скачай приложение Burger King или сделай заказ прямо сейчас и получи подарок к первому заказу по промокоду <strong>KINGFIRE</strong>!</p>
+          <a href="#menu" class="btn">
+            <i class="fa-solid fa-mobile-screen-button"></i> Заказать онлайн
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo-container">
+            <div class="logo-icon"><i class="fa-solid fa-crown"></i></div>
+            <div class="logo-text">BURGER<br><span>KING</span></div>
+          </a>
+          <p>Мы готовим бургеры на настоящем огне с 1954 года. Честный состав, культовый Воппер и свобода твоего выбора.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn"><i class="fa-brands fa-vk"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Меню</h4>
+          <ul>
+            <li><a href="#menu">Вопперы</a></li>
+            <li><a href="#menu">Курица и рыба</a></li>
+            <li><a href="#menu">Кинг Фри и снеки</a></li>
+            <li><a href="#menu">Напитки и десерты</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>О бренде</h4>
+          <ul>
+            <li><a href="#history">Наша история</a></li>
+            <li><a href="#features">Стандарты гриля</a></li>
+            <li><a href="#">Работа в King</a></li>
+            <li><a href="#">Франчайзинг</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Приложение King</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Копите короны и меняйте их на любимые бургеры за 1 рубль.</p>
+          <button class="btn btn-outline" style="padding: 10px 20px; font-size: 0.85rem; width: 100%;">
+            <i class="fa-brands fa-google-play"></i> App Store & Play
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2025 BURGER KING Corporation. Все права защищены. Настоящий гриль с 1954 года.</div>
+        <div>Политика конфиденциальности | Правила программы лояльности</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div class="toast" id="toast">
+    <div class="toast-icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <div class="toast-msg">
+      <strong id="toastTitle">Добавлено!</strong>
+      <p id="toastDesc" style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Позиция добавлена в ваш заказ</p>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    /* -----------------------------------------------------------
+       1. CANVAS ЭФФЕКТ ОГНЯ И ЛЕТЯЩИХ ИСКР
+    ----------------------------------------------------------- */
+    const canvas = document.getElementById('fire-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class SparkParticle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 20;
+        this.size = Math.random() * 3.5 + 1;
+        this.speedY = Math.random() * 2.2 + 0.8;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.life = 0;
+        this.maxLife = Math.random() * 120 + 80;
+        
+        // Палитра огня: от желто-оранжевого до алого
+        const colors = [
+          'rgba(255, 184, 28, ',
+          'rgba(214, 35, 0, ',
+          'rgba(255, 110, 0, ',
+          'rgba(255, 230, 120, '
+        ];
+        this.baseColor = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y -= this.speedY;
+        this.life++;
+
+        // Затухание альфа-канала
+        this.alpha = 1 - (this.life / this.maxLife);
+
+        if (this.life >= this.maxLife || this.y < -10) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.baseColor + Math.max(this.alpha, 0) + ')';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#D62300';
+        ctx.fill();
+      }
+    }
+
+    function initSparks() {
+      particles = [];
+      const count = window.innerWidth < 768 ? 40 : 80;
+      for (let i = 0; i < count; i++) {
+        const p = new SparkParticle();
+        p.y = Math.random() * canvas.height; // заполнить экран сразу
+        particles.push(p);
+      }
+    }
+    initSparks();
+
+    function animateSparks() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateSparks);
+    }
+    animateSparks();
+
+    /* -----------------------------------------------------------
+       2. ИНТЕРАКТИВНЫЙ 3D НАКЛОН ГЛАВНОГО БУРГЕРА ПРИ ДВИЖЕНИИ МЫШИ
+    ----------------------------------------------------------- */
+    const heroBurger = document.getElementById('heroBurger');
+    if (window.innerWidth > 992) {
+      document.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth / 2 - e.pageX) / 25;
+        const y = (window.innerHeight / 2 - e.pageY) / 25;
+        heroBurger.style.transform = `rotateY(${x}deg) rotateX(${-y}deg) translateY(-10px)`;
+      });
+    }
+
+    /* -----------------------------------------------------------
+       3. ХЕДЕР ПРИ СКРОЛЛЕ & МОБИЛЬНОЕ МЕНЮ
+    ----------------------------------------------------------- */
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    const burgerToggle = document.getElementById('burgerToggle');
+    const navLinks = document.getElementById('nav-links');
+
+    burgerToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = burgerToggle.querySelector('i');
+      if (navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        burgerToggle.querySelector('i').classList.replace('fa-xmark', 'fa-bars');
+      });
+    });
+
+    /* -----------------------------------------------------------
+       4. ТАБЫ И ФИЛЬТРЫ МЕНЮ
+    ----------------------------------------------------------- */
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const menuCards = document.querySelectorAll('.menu-card');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const category = btn.getAttribute('data-category');
+        menuCards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-cat') === category) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /* -----------------------------------------------------------
+       5. КОНСТРУКТОР БУРГЕРА («СДЕЛАЙ ПО-СВОЕМУ»)
+    ----------------------------------------------------------- */
+    const burgerStack = document.getElementById('burgerStack');
+    const builderPriceEl = document.getElementById('builderPrice');
+    const builderCaloriesEl = document.getElementById('builderCalories');
+    const resetBurgerBtn = document.getElementById('resetBurgerBtn');
+    const orderCustomBurger = document.getElementById('orderCustomBurger');
+
+    let currentPrice = 299;
+    let currentCalories = 640;
+
+    const layerClassMap = {
+      patty: { class: 'layer-patty', name: 'Говядина на огне' },
+      cheese: { class: 'layer-cheese', name: 'Сыр Чеддер' },
+      bacon: { class: 'layer-bacon', name: 'Хрустящий бекон' },
+      tomato: { class: 'layer-tomato', name: 'Свежие томаты' },
+      lettuce: { class: 'layer-lettuce', name: 'Салат Айсберг' },
+      onion: { class: 'layer-onion', name: 'Лук Фри' }
+    };
+
+    document.querySelectorAll('.ingredient-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-type');
+        const price = parseInt(btn.getAttribute('data-price'));
+        const cal = parseInt(btn.getAttribute('data-cal'));
+
+        // Создаем новый слой
+        const newLayer = document.createElement('div');
+        newLayer.className = `burger-layer ${layerClassMap[type].class}`;
+        newLayer.innerText = layerClassMap[type].name;
+
+        // Вставляем перед верхней булочкой
+        const topBun = burgerStack.querySelector('.layer-bun-top');
+        burgerStack.insertBefore(newLayer, topBun);
+
+        currentPrice += price;
+        currentCalories += cal;
+
+        builderPriceEl.innerText = `${currentPrice} ₽`;
+        builderCaloriesEl.innerText = `${currentCalories} ккал`;
+
+        showToast('Ингредиент добавлен!', `+ ${layerClassMap[type].name}`);
+      });
+    });
+
+    resetBurgerBtn.addEventListener('click', () => {
+      burgerStack.innerHTML = `
+        <div class="burger-layer layer-bun-top">Булочка с кунжутом</div>
+        <div class="burger-layer layer-tomato">Спелые томаты</div>
+        <div class="burger-layer layer-cheese">Сыр Чеддер</div>
+        <div class="burger-layer layer-patty">100% Говядина на огне</div>
+        <div class="burger-layer layer-bun-bottom">Нижняя булочка</div>
+      `;
+      currentPrice = 299;
+      currentCalories = 640;
+      builderPriceEl.innerText = `299 ₽`;
+      builderCaloriesEl.innerText = `640 ккал`;
+      showToast('Сброс', 'Собран классический Воппер');
+    });
+
+    /* -----------------------------------------------------------
+       6. КОРЗИНА И УВЕДОМЛЕНИЯ (TOAST)
+    ----------------------------------------------------------- */
+    let cartTotalItems = 0;
+    const cartCountEl = document.getElementById('cartCount');
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastDesc = document.getElementById('toastDesc');
+    let toastTimeout;
+
+    function showToast(title, desc) {
+      toastTitle.innerText = title;
+      toastDesc.innerText = desc;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2800);
+    }
+
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const itemName = btn.getAttribute('data-name');
+        cartTotalItems++;
+        cartCountEl.innerText = cartTotalItems;
+        showToast('Добавлено в заказ!', itemName);
+      });
+    });
+
+    orderCustomBurger.addEventListener('click', () => {
+      cartTotalItems++;
+      cartCountEl.innerText = cartTotalItems;
+      showToast('Королевский кастом!', `Ваш личный бургер (${currentPrice} ₽) в заказе!`);
+    });
+
+    document.getElementById('cartBtn').addEventListener('click', () => {
+      if (cartTotalItems === 0) {
+        showToast('Корзина пуста', 'Выберите что-нибудь сочное из нашего меню!');
+      } else {
+        showToast('Оформление заказа', `У вас в заказе ${cartTotalItems} поз. Направляемся на гриль!`);
+      }
+    });
+
+    /* -----------------------------------------------------------
+       7. ANIMATION ON SCROLL (TIMELINE)
+    ----------------------------------------------------------- */
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.25 });
+
+    timelineItems.forEach(item => observer.observe(item));
+  </script>
+</body>
+</html>
